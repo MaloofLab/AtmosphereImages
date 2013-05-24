@@ -67,8 +67,11 @@ pmc seems to be a temporary removal, I think the others are really gone.
 	
 ### BWA
 the installed BWA is out of date
+
     apt-get remove bwa
+
 downloaded bwa 0.7.4 from source forge into /usr/local/src
+
     bunzip2 bwa-0.7.4.tar.bz2
     tar -xvf bwa-0.7.4.tar
     cd bwa-0.7.4/
@@ -77,9 +80,13 @@ downloaded bwa 0.7.4 from source forge into /usr/local/src
     ln -s /usr/local/src/bwa-0.7.4/bwa.1 /usr/local/share/man/man1/
     
 ### bowtie
+
 the installed bowtie is out of date
+
     apt-get remove bowtie
-    downloaded bowtie 1.0.0 from source forge
+
+ downloaded bowtie 1.0.0 from source forge
+
     mv bowtie-1.0.0-linux-x86_64.zip /usr/local/src
     cd /usr/local/src
     unzip bowtie-1.0.0-linux-x86_64.zip
@@ -90,6 +97,7 @@ the installed bowtie is out of date
     
 ### bowtie2
 downloaded from http://www.broadinstitute.org/software/igv/download
+
     mv ~/Downloads/bowtie2-2.1.0-linux-x86_64.zip ./
     unzip bowtie2-2.1.0-linux-x86_64.zip
     cd /usr/local/bin
@@ -118,6 +126,7 @@ downloaded from http://www.broadinstitute.org/software/igv/download
     
 ### GATK
 Download from http://www.broadinstitute.org/gatk/
+
     mv GenomeAnalysisTK-2.5-2.tar.bz2 /usr/local/src
     cd /usr/local/src
     bunzip2 GenomeAnalysisTK-2.5-2.tar.bz2
@@ -143,17 +152,19 @@ must start with:
       
 edit make-include.mak  to set LASTZ_INSTALL="/usr/local/src/lastz-distrib-1.02.00/bin/"
 edit src/Makefile to remove -Werror compile flag
+
      make
      make install
-      cd /usr/local/bin
-      ls
-      cp -s ../src/lastz-distrib-1.02.00/bin/lastz* ./
-      lastz
-      history
+     cd /usr/local/bin
+     ls
+     cp -s ../src/lastz-distrib-1.02.00/bin/lastz* ./
+     lastz
+     history
     
 ### orthomcl
 	apt-get install mcl
 	wget http://orthomcl.org/common/downloads/software/v2.0/orthomclSoftware-v2.0.8.tar.gz
+
 *incomplete*
 
 ### tophat
@@ -174,6 +185,7 @@ edit src/Makefile to remove -Werror compile flag
 download from http://sourceforge.net/projects/varscan/files/
 copy into usr/local/bin
 needs to be run with:
+
     java -jar VarScan.v2.3.5.jar mpileup2snp
     
 ### satsuma
