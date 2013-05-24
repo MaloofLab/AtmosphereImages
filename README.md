@@ -1,4 +1,4 @@
-start with image "Ubuntu 12.04 Xfce GUI v2"
+#start with image "Ubuntu 12.04 Xfce GUI v2"
 
     apt-get update
     apt-get upgrade
@@ -189,8 +189,15 @@ added /usr/local/src/satsuma-2.0 to PATH in /etc/environment
 create on local desktop,
 then copy to /etc/skel/Desktop
 
+### augustus
+    wget http://bioinf.uni-greifswald.de/augustus/binaries/augustus.2.7.tar.gz
+    tar -xvzf augustus.2.7.tar.gz
+    cd augustus.2.7/
+    make
+    cd /usr/local/bin
+    cp -s /usr/local/src/augustus.2.7/bin/* ./
+
 #To Do
-augustus http://bioinf.uni-greifswald.de/augustus/
 
 SVDetect http://svdetect.sourceforge.net/Site/Download.html
 
