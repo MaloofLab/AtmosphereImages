@@ -209,11 +209,31 @@ then copy to /etc/skel/Desktop
     cd /usr/local/bin
     cp -s /usr/local/src/augustus.2.7/bin/* ./
 
+### circos
+    wget http://circos.ca/distribution/circos-0.64.tgz
+    tar -xvzf circos-0.64.
+    cd circos-0.64/bin
+    ./test.modules
+    cpan Config::General
+    cpan Font::TTF::Font
+    cpan Math::Round Math::VecStat
+    cpan Readonly
+    cpan Regexp::Common Text::Format
+
+Add /usr/local/src/circos-0.64/bin to path in /etc/environment
+
+###SVDetect
+Download from sourceforge
+
+    cpan Tie::IxHash
+    cpan Parallel::ForkManager
+    mv ~/Downloads/SVDetect_r0.7m.tar.gz ./
+    tar -xvzf SVDetect_r0.7m.tar.gz
+    cd /usr/local/bin
+    cp -s ../src/SVDetect_r0.7m/bin/SVDetect ./
+
+
 #To Do
 
-SVDetect http://svdetect.sourceforge.net/Site/Download.html
-
-circos plot http://circos.ca/
-
-need to get better default for right-click
+need to set better default key for right-click
 	
