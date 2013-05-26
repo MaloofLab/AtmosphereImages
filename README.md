@@ -9,6 +9,7 @@
     apt-get install python3-all --install-suggests
     apt-get install python3-numpy puthon3-scipy
     apt-get install python3-dev python-dev python-numpy python-scipy python-support
+    apt-get install python-pip
     wget http://biopython.org/DIST/biopython-1.61.tar.gz
     tar -xvzf biopython-1.61.tar.gz
     cd biopython-1.61/
@@ -52,7 +53,7 @@ I am lazy so just throwing whole library list from MaloofBionfV6 at biocList().
 
 > warnings()
 Warning messages:
-1: packages  âcosmoâ,  âpmcâ, ârpvmâ, , âmanipulateâ are not available (for R version 2.15.3)
+1: packages  cosmo,  pmc, rpvm, , manipulate are not available (for R version 2.15.3)
 
 pmc seems to be a temporary removal, I think the others are really gone.
 	install.packages("genetics")
@@ -222,7 +223,7 @@ then copy to /etc/skel/Desktop
 
 Add /usr/local/src/circos-0.64/bin to path in /etc/environment
 
-###SVDetect
+### SVDetect
 Download from sourceforge
 
     cpan Tie::IxHash
@@ -232,8 +233,98 @@ Download from sourceforge
     cd /usr/local/bin
     cp -s ../src/SVDetect_r0.7m/bin/SVDetect ./
 
+### update R to 3.0
+    apt-get update
+    apt-get upgrade #might as well do the whole thing
+
+within R:
+    update.packages(ask=F,checkbuilt=T) 
+    source("http://bioconductor.org/biocLite.R")
+    biocLite()             # now updates installed...
+    biocValid()            # also useful
+
+## Dan Fulop Stuff
+
+### Stan:
+
+    wget https://stan.googlecode.com/files/stan-src-1.3.0.tgz   458  tar -xvzf stan-src-1.3.0.tgz
+    cd stan-src-1.3.0/ 
+    make bin/libstan.a
+    make bin/stanc
+
+### DanF R list
+
+    install.packages(c("RStan", "ape", "geiger", "phytools", "picante", "vegan", "phylobase", "pmc", "coefplot2", "bbmle", "rethinking", "MCMCglmm", "blme", "caper", "baySeq", "QuasiSeq", "ouch", "scaleboot", "OUwie", "surface", "gpairs", "GGally", "geomorph", "phyloclim", "spider", "adephylo", "treebase", "phylolm", "gee", "gam", "mgcv", "gammSlice", "nlme", "lme4", "glmer2stan", "rbugs", "coda", "DPpackage", "pvclust"))
+
+The following need to be done separately:
+RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
+
+    biocLite("baySeq")
+    #pmc has been removed from CRAN so not installed
+    install.packages("coefplot2",repos="http://r-forge.r-project.org/")
+    #not available for R 3.0.1
+
+    options(repos=c(getOption('repos'), rethinking='http://xcelab.net/R'))
+    install.packages('rethinking',type='source',dependencies='Depends')
+
+    options(repos=c(getOption('repos'), glmer2stan='http://xcelab.net/R'))
+    install.packages('glmer2stan',type='source',dependencies='Depends')
+
+    options(repos = c(getOption("repos"), rstan = "http://wiki.stan.googlecode.com/git/R"))
+    install.packages('rstan', type = 'source')
+
+### dendropy
+    pip install dendropy
+
+### ipython
+    apt-get install ipython-notebook
+
+### BEAST
+    cd /usr/local/src
+    wget http://beast-mcmc.googlecode.com/files/BEASTv1.7.5.tgz
+    tar -xvzf BEASTv1.7.5.tgz
+    cd /usr/local/bin
+    cp -s ../src/BEASTv1.7.5/bin/* ./
+
+### bali-phy
+    apt-get install libgsl0ldbl
+    cd /usr/local/src
+    mkdir bali-phy-2.1.1
+    cd bali-phy-2.1.1
+    wget http://faculty.biomath.ucla.edu/msuchard/bali-phy/bali-phy-2.1.1-linux64.tar.gz
+    tar -xvzf bali-phy-2.1.1-linux64.tar.gz
+    cd /usr/local/bin
+    cp -s ../src/bali-phy-2.1.1/bin/* ./
+
+### raxml
+    wget https://github.com/stamatak/standard-RAxML/archive/master.zip
+    unzip master.zip
+    cd standard-RAxML-master/
+    make -f Makefile.SSE3.PTHREADS.gcc
+    rm *.o
+    ln -s raxmlHPC-PTHREADS-SSE3 /usr/local/bin
+
+### garli
+    cd /usr/local/src
+    wget https://garli.googlecode.com/files/garli-2.0.tar.gz
+    cd garli-2.0/
+    ./build_garli.sh
+
+**FAIL**
+
+### SPIMAP
+    apt-get install libgsl0-dev
+    wget http://compbio.mit.edu/spimap/pub/spimap-1.1.tar.gz
+    cd spimap-1.1
+    make
+    make install prefix=/usr/local
+
+
+
 
 #To Do
+
+Dan Fulop's list
 
 need to set better default key for right-click
 	
