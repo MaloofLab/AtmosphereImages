@@ -238,6 +238,7 @@ Download from sourceforge
     apt-get upgrade #might as well do the whole thing
 
 within R:
+
     update.packages(ask=F,checkbuilt=T) 
     source("http://bioconductor.org/biocLite.R")
     biocLite()             # now updates installed...
@@ -309,8 +310,7 @@ RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
     wget https://garli.googlecode.com/files/garli-2.0.tar.gz
     cd garli-2.0/
     ./build_garli.sh
-
-**FAIL**
+ **FAIL**
 
 ### SPIMAP
     apt-get install libgsl0-dev
