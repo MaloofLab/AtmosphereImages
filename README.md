@@ -33,6 +33,7 @@
     apt-get install libgl1-mesa-dev #for rgl
     apt-get install libglu1-mesa-dev #for rgl
     apt-get install libmysqlclient-dev #for R mysql
+    apt-get install git
     
 ### R
 see CRAN
@@ -198,6 +199,10 @@ needs to be run with:
 doesn't work when linked from /usr/local/bin
 added /usr/local/src/satsuma-2.0 to PATH in /etc/environment
 
+### SmartGit
+downloaded from website and unpacked in /usr/local/src
+Create desktop launcher 
+
 ### Desktop Aliases
 create on local desktop,
 then copy to /etc/skel/Desktop
@@ -303,7 +308,8 @@ RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
     cd standard-RAxML-master/
     make -f Makefile.SSE3.PTHREADS.gcc
     rm *.o
-    ln -s raxmlHPC-PTHREADS-SSE3 /usr/local/bin
+    cd /usr/local/bin
+    cp -s ../src/standard-RAxML-master/raxmlHPC-PTHREADS-SSE3 ./
 
 ### garli
     cd /usr/local/src
@@ -319,12 +325,77 @@ RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
     make
     make install prefix=/usr/local
 
+### TreeFix
+    apt-get install swig
+    cd /usr/local/src
+    wget http://compbio.mit.edu/treefix/pub/sw/treefix-1.1.7.tar.gz
+    tar -xvzf treefix-1.1.7.tar.gz
+    cd treefix-1.1.7/
+    python setup.py build
+    python setup.py install
 
+### PrIME
+    apt-get install libxml2 liblapack3gf libatlas3gf-base libgfortran3 libopenmpi1.3 libquadmath0 libstdc++6 libxerces-c3.1 zlib1g
+    apt-get install libboost-mpi1.46.1 libboost-serialization1.46.1
+    wget http://prime.sbc.su.se/download/ubuntu/amd64/12.04/prime-phylo_1.0.10-1_amd64.deb
+    dpkg -i prime-phylo_1.0.10-1_amd64.deb
+
+### bucky
+    wget http://dstats.net/download/http://www.stat.wisc.edu/~ane/bucky/v1.4/bucky-1.4.2.tgz
+    tar -xvzf bucky-1.4.2.tgz
+    cd bucky-1.4.2/
+    cd src
+    make
+    cd /usr/local/bin
+    cp -s ../src/bucky-1.4.2/src/bucky ./
+    cp -s ../src/bucky-1.4.2/src/mbsum ./
+
+### Threshml
+    wget http://evolution.gs.washington.edu/phylip/download/threshml/threshml.zip
+    unzip threshml.zip
+    cd ../bin/
+    cp -s ../src/threshml/threshml.linuxi64 ./threshml
+
+### hyphy
+    cd /usr/local/src
+    git clone git://github.com/veg/hyphy.git
+    apt-get install cmake
+    cmake .
+    make MP2
+    make install
+
+### prank (& exonerate & mafft)
+    wget https://prank-msa.googlecode.com/files/prank.linux64.130410.tgz
+    tar -xvzf prank.linux64.130410.tgz
+    cd ../bin
+    cp -s ../src/prank/bin/prank ./
+    cp -s ../src/prank/bin/exonerate ./
+    cp -s ../src/prank/bin/bppancestor ./
+    cp -s ../src/prank/bin/mafft ./
+
+### probalign
+    apt-get probalign
+
+### jalview
+    apt-get jalview
+And setup desktop launcher
+
+### RevTrans
+    cd /usr/local/src
+    wget http://www.cbs.dtu.dk/services/RevTrans/releases/revtrans-1.4.tgz
+    tar -xvzf revtrans-1.4.tgz
+    cd ../bin
+    cp -s ../src/RevTrans-1.4/*.py ./
+edit beginning of .py files to change python location
+
+### Dendroscope
+    wget http://ab.inf.uni-tuebingen.de/data/software/dendroscope3/download/Dendroscope_unix_3_2_7.sh
+    chmod 0777 Dendroscope_unix_3_2_7.sh
+    ./Dendroscope_unix_3_2_7.sh
 
 
 #To Do
 
-Dan Fulop's list
 
 need to set better default key for right-click
 	
