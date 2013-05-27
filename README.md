@@ -1,4 +1,8 @@
-#start with image "Ubuntu 12.04 Xfce GUI v2"
+# Installation notes for Maloof-Biof v8
+
+## start with image "Ubuntu 12.04 Xfce GUI v2"
+
+### General installs 
 
     apt-get update
     apt-get upgrade
@@ -311,12 +315,12 @@ RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
     cd /usr/local/bin
     cp -s ../src/standard-RAxML-master/raxmlHPC-PTHREADS-SSE3 ./
 
-### garli
+### garli (not working)
     cd /usr/local/src
     wget https://garli.googlecode.com/files/garli-2.0.tar.gz
     cd garli-2.0/
     ./build_garli.sh
- **FAIL**
+ *FAIL*
 
 ### SPIMAP
     apt-get install libgsl0-dev
