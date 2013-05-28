@@ -27,7 +27,6 @@
     #note this installed lots of bioinf packages including bwa, bowtie, hmmer, miscule, mafft, tcoffee, and much more
     apt-get install openmpi-dev libopenmpi-dev
     apt-get install ncbi-blast+ ncbi-blast+-legacy
-    apt-get install mrbayes mrbayes-mpi
     apt-get install mysql-client mysql-server #password = "34..." with first letters capitilized
     apt-get install eclipse
     apt-get install picard-tools
@@ -283,6 +282,12 @@ RStan, pmc, coefplot2, rethinking, baySeq, glmer2stan
     options(repos = c(getOption("repos"), rstan = "http://wiki.stan.googlecode.com/git/R"))
     install.packages('rstan', type = 'source')
 
+#### coefplot2
+in bash:
+
+    svn checkout svn://scm.r-forge.r-project.org/svnroot/coefplot2/
+    R CMD INSTALL coefplot2/pkg/
+
 ### dendropy
     pip install dendropy
 
@@ -396,6 +401,28 @@ edit beginning of .py files to change python location
     wget http://ab.inf.uni-tuebingen.de/data/software/dendroscope3/download/Dendroscope_unix_3_2_7.sh
     chmod 0777 Dendroscope_unix_3_2_7.sh
     ./Dendroscope_unix_3_2_7.sh
+
+### BEAGLE
+    sudo apt-get install build-essential autoconf automake libtool subversion pkg-config openjdk-6-jdk
+    svn checkout http://beagle-lib.googlecode.com/svn/trunk/ beagle-lib
+    cd beagle-lib
+    ./autogen.sh
+    ./configure --prefix=/usr/local
+    make install
+
+### Mr Bayes
+    apt-get install mpi-default-bin
+    autoconf
+    ./configure --enable-mpi=yes
+
+edit the Makefile as described [here](http://sourceforge.net/mailarchive/message.php?msg_id=29653672)
+Also remove "-L/usr/local/lib" from LDFLAGS
+
+(technically I think this is the wrong way to do it, but it works...)
+
+    make
+    cd /usr/local/bin
+    cp -s ../src
 
 
 #To Do
