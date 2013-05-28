@@ -11,7 +11,7 @@
     apt-get install mosh
     apt-get install htop
     apt-get install python3-all --install-suggests
-    apt-get install python3-numpy puthon3-scipy
+    apt-get install python3-numpy python3-scipy
     apt-get install python3-dev python-dev python-numpy python-scipy python-support
     apt-get install python-pip
     wget http://biopython.org/DIST/biopython-1.61.tar.gz
