@@ -424,9 +424,88 @@ Also remove "-L/usr/local/lib" from LDFLAGS
     cd /usr/local/bin
     cp -s ../src
 
+## Mike
+
+### Perlbrew
+
+*Free up space by cleaning apt-get cache (disk space was nearly full from other installations):*
+
+    sudo apt-get clean
+
+*Install Perlbrew:*
+
+    sudo mkdir /perlbrew
+    sudo chown mfc /perlbrew/
+    export PERLBREW_ROOT=/perlbrew
+    curl -kL http://install.perlbrew.pl | bash
+
+*Add to `/etc/bash.bashrc`:*
+
+    # For Perlbrew (added by Mike Covington)
+    export PATH=/perlbrew/bin:$PATH
+    export PERLBREW_ROOT=/perlbrew
+    source /perlbrew/etc/bashrc
+
+*Install Perl:*
+
+Perl 5.18.0 just came out, but there are some hash-related changes that may break some modules; therefore, will install 5.16.3 for now.
+
+    perlbrew install perl-5.16.3
+    perlbrew switch perl-5.16.3
+    perlbrew install-cpanm
+
+*Install Perl modules:*
+
+    cpanm --sudo Modern::Perl
+    cpanm --sudo DateTime
+    cpanm --sudo Data::Printer
+    cpanm --sudo Moose
+    cpanm --sudo Statistics::R
+    cpanm --sudo Parallel::ForkManager
+    cpanm --sudo Perl::Tidy
+    cpanm --sudo Perl::Critic
+    cpanm --sudo Mojo
+    cpanm --sudo URI
+    cpanm --sudo Math::Random
+    cpanm --sudo Image::ExifTool
+    cpanm --sudo Statistics::Descriptive
+    cpanm --sudo Text::Table
+
+*Installing DB_File:*
+
+    sudo apt-get install libdb4.8-dev
+    cpanm --sudo DB_File
+
+/usr/bin/samtools
+
+*Installing BioPerl:*
+
+Keep getting errors related to 'Failed to upconvert metadata to 1.3.'; therfore, updated `CPAN::Meta::Converter`, but still get errors.
+
+    cpanm --sudo CPAN::Meta::Converter
+
+Figured out that `cpanm` was trying to install an OLD version of BioPerl. This was successful:
+
+    wget http://www.cpan.org/authors/id/C/CJ/CJFIELDS/BioPerl-1.6.901.tar.gz
+    cpanm --sudo BioPerl-1.6.901.tar.gz
+
+*Install Bio::DB::Sam:*
+
+    cd /usr/local/src/
+    sudo wget http://downloads.sourceforge.net/project/samtools/samtools/0.1.18/samtools-0.1.18.tar.bz2
+    sudo tar -xjf samtools-0.1.18.tar.bz2 
+    cd samtools-0.1.18/
+    sudo make CXXFLAGS=-fPIC CFLAGS=-fPIC CPPFLAGS=-fPIC
+
+    cpanm --sudo Bio::DB::Sam
+
+At `Please enter the location of the bam.h and compiled libbam.a files:`prompt, enter: `/usr/local/src/samtools-0.1.18`
+
+
 
 #To Do
 
 
 need to set better default key for right-click
-	
+
+install Vcftools and path to PERL5LIB <http://vcftools.sourceforge.net/perl_module.html>
