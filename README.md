@@ -528,7 +528,7 @@ At `Please enter the location of the bam.h and compiled libbam.a files:`prompt, 
 Add to `/etc/bash.bashrc`:
 
     # For vcftools
-        export PERL5LIB=/usr/local/src/vcftools_0.1.10/perl
+        export PERL5LIB=/usr/local/src/vcftools_0.1.10/perl:/usr/local/src/tabix-0.2.6/perl
 
 
 
