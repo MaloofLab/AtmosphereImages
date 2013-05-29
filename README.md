@@ -491,6 +491,8 @@ Figured out that `cpanm` was trying to install an OLD version of BioPerl. This w
 
 *Install Bio::DB::Sam:*
 
+Need a built-from-source copy of samtools. Samtools 0.1.19 just came out a couple weeks ago, but I'm going to use 0.1.18, since that is the version that was installed (by Rsamtools?) and is the version I've been using for genotyping. I'm not yet sure what has changed between the versions.
+
     cd /usr/local/src/
     sudo wget http://downloads.sourceforge.net/project/samtools/samtools/0.1.18/samtools-0.1.18.tar.bz2
     sudo tar -xjf samtools-0.1.18.tar.bz2 
@@ -502,10 +504,35 @@ Figured out that `cpanm` was trying to install an OLD version of BioPerl. This w
 At `Please enter the location of the bam.h and compiled libbam.a files:`prompt, enter: `/usr/local/src/samtools-0.1.18`
 
 
+*Install vcftools and tabix (and Vcf.pm)*
+
+    cd /usr/local/src/
+    sudo wget http://downloads.sourceforge.net/project/vcftools/vcftools_0.1.10.tar.gz
+    sudo tar -xzf vcftools_0.1.10.tar.gz
+    sudo chmod -R 755 vcftools_0.1.10
+    cd vcftools_0.1.10/
+    sudo make
+    cd /usr/local/bin/
+    for i in ../src/vcftools_0.1.10/bin/*; su do echo $i; ln -s $i; done
+
+    cd /usr/local/src/
+    sudo wget http://downloads.sourceforge.net/project/samtools/tabix/tabix-0.2.6.tar.bz2
+    sudo tar -xjf tabix-0.2.6.tar.bz2
+    sudo chmod -R 755 tabix-0.2.6
+    cd tabix-0.2.6/
+    sudo make
+    cd /usr/local/bin/
+    sudo ln -s ../src/tabix-0.2.6/tabix
+    sudo ln -s ../src/tabix-0.2.6/bgzip
+
+Add to `/etc/bash.bashrc`:
+
+    # For vcftools
+        export PERL5LIB=/usr/local/src/vcftools_0.1.10/perl
+
+
 
 #To Do
 
 
 need to set better default key for right-click
-
-install Vcftools and path to PERL5LIB <http://vcftools.sourceforge.net/perl_module.html>
