@@ -215,6 +215,7 @@ Create desktop launcher
 ### Desktop Aliases
 create on local desktop,
 then copy to /etc/skel/Desktop
+image icons can go in /usr/share/pixmaps
 
 ### augustus
     wget http://bioinf.uni-greifswald.de/augustus/binaries/augustus.2.7.tar.gz
