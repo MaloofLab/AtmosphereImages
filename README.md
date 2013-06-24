@@ -81,8 +81,10 @@ downloaded bwa 0.7.4 from source forge into /usr/local/src
     tar -xvf bwa-0.7.4.tar
     cd bwa-0.7.4/
     make
-    ln -s /usr/local/src/bwa-0.7.4/bwa /usr/local/bin/bwa
-    ln -s /usr/local/src/bwa-0.7.4/bwa.1 /usr/local/share/man/man1/
+    cd ../
+    ln -s /usr/local/src/bwa-0.7.4 /usr/local/src/bwa
+    ln -sf /usr/local/src/bwa/bwa /usr/local/bin/bwa
+    ln -sf /usr/local/src/bwa/bwa.1 /usr/local/share/man/man1/
     
 ### bowtie
 
@@ -98,15 +100,18 @@ the installed bowtie is out of date
     cd bowtie-1.0.0/
     chmod -R o+r *
     chmod  o+x bowtie
-    ln -s /usr/local/src/bowtie-1.0.0/bowtie /usr/local/bin/bowtie
+    ln -s bowtie-1.0.0/ bowtie
+    cd /usr/local/bin
+    cp -sf ../src/bowtie/bowtie ./
     
 ### bowtie2
 downloaded from http://www.broadinstitute.org/software/igv/download
 
     mv ~/Downloads/bowtie2-2.1.0-linux-x86_64.zip ./
     unzip bowtie2-2.1.0-linux-x86_64.zip
+    ln -s bowtie2-2.1.0/ bowtie2
     cd /usr/local/bin
-    cp -s ../src/bowtie2-2.1.0/bowtie2* ./
+    cp -sf ../src/bowtie2/bowtie2* ./
     
 ### blat
     cd /usr/local/bin
@@ -118,8 +123,8 @@ downloaded from http://www.broadinstitute.org/software/igv/download
     wget http://cufflinks.cbcb.umd.edu/downloads/cufflinks-2.1.1.Linux_x86_64.tar.gz
     tar -xvzf cufflinks-2.1.1.Linux_x86_64.tar.gz
     cd /usr/local/bin
-    cp -s /usr/local/src/cufflinks-2.1.1.Linux_x86_64/cuff* ./
-    cp -s /usr/local/src/cufflinks-2.1.1.Linux_x86_64/g* ./
+    cp -sf /usr/local/src/cufflinks/cuff* ./
+    cp -sf /usr/local/src/cufflinks/g* ./
     	
 ### FastQC
     wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
@@ -136,9 +141,10 @@ Download from http://www.broadinstitute.org/gatk/
     cd /usr/local/src
     bunzip2 GenomeAnalysisTK-2.5-2.tar.bz2
     tar -xvf GenomeAnalysisTK-2.5-2.tar
+    ln -s 
     cd /usr/local/bin/
-    cp -s ../src/GenomeAnalysisTK-2.5-2-gf57256b/GenomeAnalysisTK.jar ./
-    
+    cp -sf ../src/GenomeAnalysisTK/GenomeAnalysisTK.jar ./
+        
 must start with:
     
     java -jar GenomeAnalysisTK.jar
@@ -146,9 +152,10 @@ must start with:
 ### IGV
     wget http://www.broadinstitute.org/igv/projects/downloads/IGV_2.3.6.zip
     unzip IGV_2.3.6.zip
+    ln -s IGV_2.3.6 IGV
     cd /usr/local/bin
-    cp -s ../src/IGV_2.3.6/igv.sh ./
-    cp -s ../src/IGV_2.3.6/igv.jar ./
+    cp -sf ../src/IGV/igv.sh ./
+    cp -sf ../src/IGV/igv.jar ./
     
 ### lastz
       wget http://www.bx.psu.edu/miller_lab/dist/lastz-1.02.00.tar.gz
@@ -163,8 +170,6 @@ edit src/Makefile to remove -Werror compile flag
      cd /usr/local/bin
      ls
      cp -s ../src/lastz-distrib-1.02.00/bin/lastz* ./
-     lastz
-     history
     
 ### orthomcl
 	apt-get install mcl
@@ -175,8 +180,9 @@ edit src/Makefile to remove -Werror compile flag
 ### tophat
     wget http://tophat.cbcb.umd.edu/downloads/tophat-2.0.8b.Linux_x86_64.tar.gz
     tar -xvzf tophat-2.0.8b.Linux_x86_64.tar.gz
+    ln -s tophat-2.0.8b.Linux_x86_64 tophat
     cd /usr/local/bin
-    cp -s ../src/tophat-2.0.8b.Linux_x86_64/* ./
+    cp -sf ../src/tophat-2.0.8b.Linux_x86_64/* ./
     rm AUTHORS COPYING README
 
 ### cap3
@@ -215,8 +221,9 @@ then copy to /etc/skel/Desktop
     tar -xvzf augustus.2.7.tar.gz
     cd augustus.2.7/
     make
+    ln -s augustus.2.7 augustus
     cd /usr/local/bin
-    cp -s /usr/local/src/augustus.2.7/bin/* ./
+    cp -sf /usr/local/src/augustus/bin/* ./
 
 ### circos
     wget http://circos.ca/distribution/circos-0.64.tgz
@@ -238,8 +245,9 @@ Download from sourceforge
     cpan Parallel::ForkManager
     mv ~/Downloads/SVDetect_r0.7m.tar.gz ./
     tar -xvzf SVDetect_r0.7m.tar.gz
+    ln -s SVDetect_r0.7m SVDetect
     cd /usr/local/bin
-    cp -s ../src/SVDetect_r0.7m/bin/SVDetect ./
+    cp -sf ../src/SVDetect/bin/SVDetect ./
 
 ### update R to 3.0
     apt-get update
@@ -298,8 +306,9 @@ in bash:
     cd /usr/local/src
     wget http://beast-mcmc.googlecode.com/files/BEASTv1.7.5.tgz
     tar -xvzf BEASTv1.7.5.tgz
+    ln -s BEASTv1.7.5 BEAST
     cd /usr/local/bin
-    cp -s ../src/BEASTv1.7.5/bin/* ./
+    cp -sf ../src/BEAST/bin/* ./
 
 ### bali-phy
     apt-get install libgsl0ldbl
@@ -308,8 +317,10 @@ in bash:
     cd bali-phy-2.1.1
     wget http://faculty.biomath.ucla.edu/msuchard/bali-phy/bali-phy-2.1.1-linux64.tar.gz
     tar -xvzf bali-phy-2.1.1-linux64.tar.gz
+    cd /usr/local/src
+    ln -s bali-phy-2.1.1 bali-phy
     cd /usr/local/bin
-    cp -s ../src/bali-phy-2.1.1/bin/* ./
+    cp -s ../src/bali-phy/bin/* ./
 
 ### raxml
     wget https://github.com/stamatak/standard-RAxML/archive/master.zip
@@ -355,9 +366,11 @@ in bash:
     cd bucky-1.4.2/
     cd src
     make
+    cd ../
+    ln -s bucky-1.4.2 bucky
     cd /usr/local/bin
-    cp -s ../src/bucky-1.4.2/src/bucky ./
-    cp -s ../src/bucky-1.4.2/src/mbsum ./
+    cp -sf ../src/bucky/src/bucky ./
+    cp -sf ../src/bucky/src/mbsum ./
 
 ### Threshml
     wget http://evolution.gs.washington.edu/phylip/download/threshml/threshml.zip
@@ -426,6 +439,8 @@ Also remove "-L/usr/local/lib" from LDFLAGS
 
 
 #To Do
+
+* SnpEff
 
 
 need to set better default key for right-click
