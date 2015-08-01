@@ -15,7 +15,6 @@
     apt-get install muscle clustalw mafft emboss blast2 probcons
     apt-get install bioperl
     #note this installed lots of bioinf packages including bwa, bowtie, hmmer, miscule, mafft, tcoffee, and much more
-    apt-get install tophat cufflinks bowtie2
     apt-get install openmpi-bin libopenmpi-dev
     apt-get install ncbi-blast+ ncbi-blast+-legacy
     apt-get install mysql-client mysql-server #password = "34..." with first letters capitilized
@@ -51,27 +50,25 @@ I am lazy so just throwing whole library list from MaloofBionfV6 at biocList().
 	
     biocLite(c("igraph","WGCNA","lmerTest","Rsubread"))
 
-#### Stopped here 07/29
-
 ### R Studio Server
- 	sudo apt-get install gdebi-core
- 	sudo apt-get install libapparmor1  # Required only for Ubuntu, not Debian
- 	wget http://download2.rstudio.org/rstudio-server-0.97.449-amd64.deb
-	gdebi rstudio-server-0.97.449-amd64.deb
+
+    sudo apt-get install gdebi-core
+    wget https://download2.rstudio.org/rstudio-server-0.99.467-amd64.deb
+    sudo gdebi rstudio-server-0.99.467-amd64.deb
 	
 ### BWA
 the installed BWA is out of date
 
     apt-get remove bwa
 
-downloaded bwa 0.7.4 from source forge into /usr/local/src
+downloaded bwa 0.7.12 from source forge into /usr/local/src
 
-    bunzip2 bwa-0.7.4.tar.bz2
-    tar -xvf bwa-0.7.4.tar
-    cd bwa-0.7.4/
+    bunzip2 bwa-0.7.12.tar.bz2
+    tar -xvf bwa-0.7.12.tar
+    cd bwa-0.7.12/
     make
     cd ../
-    ln -s /usr/local/src/bwa-0.7.4 /usr/local/src/bwa
+    ln -s /usr/local/src/bwa-0.7.12 /usr/local/src/bwa
     ln -sf /usr/local/src/bwa/bwa /usr/local/bin/bwa
     ln -sf /usr/local/src/bwa/bwa.1 /usr/local/share/man/man1/
     
@@ -81,56 +78,55 @@ the installed bowtie is out of date
 
     apt-get remove bowtie
 
- downloaded bowtie 1.0.0 from source forge
-
-    mv bowtie-1.0.0-linux-x86_64.zip /usr/local/src
     cd /usr/local/src
-    unzip bowtie-1.0.0-linux-x86_64.zip
-    cd bowtie-1.0.0/
-    chmod -R o+r *
-    chmod  o+x bowtie
-    ln -s bowtie-1.0.0/ bowtie
+    wget http://downloads.sourceforge.net/project/bowtie-bio/bowtie/1.1.2/bowtie-1.1.2-linux-x86_64.zip
+    unzip bowtie-1.1.2-linux-x86_64.zip
     cd /usr/local/bin
     cp -sf ../src/bowtie/bowtie ./
     
-### bowtie2
-downloaded from http://www.broadinstitute.org/software/igv/download
 
-    mv ~/Downloads/bowtie2-2.1.0-linux-x86_64.zip ./
-    unzip bowtie2-2.1.0-linux-x86_64.zip
-    ln -s bowtie2-2.1.0/ bowtie2
+### bowtie2
+
+    wget wget http://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.2.5/bowtie2-2.2.5-linux-x86_64.zip
+    unzip bowtie2-2.2.5-linux-x86_64.zip
+    ln -s bowtie2-2.2.5/ bowtie2
     cd /usr/local/bin
     cp -sf ../src/bowtie2/bowtie2* ./
     
+
 ### blat
     cd /usr/local/bin
     wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
     chmod 0755 blat
 
 ### cufflinks
-    cd /usr/local/src
-    wget http://cufflinks.cbcb.umd.edu/downloads/cufflinks-2.1.1.Linux_x86_64.tar.gz
-    tar -xvzf cufflinks-2.1.1.Linux_x86_64.tar.gz
-    cd /usr/local/bin
-    cp -sf /usr/local/src/cufflinks/cuff* ./
-    cp -sf /usr/local/src/cufflinks/g* ./
+    wget http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/cufflinks-2.2.1.Linux_x86_64.tar.gz
+    tar -xvzf cufflinks-2.2.1.Linux_x86_64.tar.gz
+    ln -s cufflinks-2.2.1.Linux_x86_64 cufflinks
+    cd ../bin
+    cp -s ../src/cufflinks/cuff* ./
+    cp -s ../src/cufflinks/g* ./
+
     	
 ### FastQC
-    wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.10.1.zip
-    unzip fastqc_v0.10.1.zip
+    wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.3.zip
+    unzip fastqc_v0.11.3.zip
     cd FastQC/
     chmod 0755 fastqc
     cd /usr/local/bin
     cp -s ../src/FastQC/fastqc ./
     
+
 ### GATK
 Download from http://www.broadinstitute.org/gatk/
 
-    mv GenomeAnalysisTK-2.5-2.tar.bz2 /usr/local/src
+    
     cd /usr/local/src
-    bunzip2 GenomeAnalysisTK-2.5-2.tar.bz2
-    tar -xvf GenomeAnalysisTK-2.5-2.tar
-    ln -s 
+    mkdir GenomeAnalysisTK
+    mv ~/GenomeAnalysisTK-3.4-46.tar.bz2 /usr/local/src/GenomeAnalysisTK
+    cd GenomeAnalysisTK
+    bunzip2 GenomeAnalysisTK-3.4-46.tar.bz2
+    tar -xvf GenomeAnalysisTK-3.4-46.tar
     cd /usr/local/bin/
     cp -sf ../src/GenomeAnalysisTK/GenomeAnalysisTK.jar ./
         
@@ -138,6 +134,9 @@ must start with:
     
     java -jar GenomeAnalysisTK.jar
     
+
+### stopped here July 31
+
 ### IGV
     wget http://www.broadinstitute.org/igv/projects/downloads/IGV_2.3.6.zip
     unzip IGV_2.3.6.zip
