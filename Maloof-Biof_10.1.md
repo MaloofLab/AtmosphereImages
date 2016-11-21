@@ -4,7 +4,7 @@
 
 ### R packages and Kallisto added
 
-### Installng Rstan
+### Installing Rstan
 
 ```
 
