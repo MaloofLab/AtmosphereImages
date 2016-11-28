@@ -40,7 +40,8 @@ devtools::install_github("rmcelreath/rethinking")
 ### Installing brms
 
 ```
-install.packages("brms")
+library(devtools)
+install_github("paul-buerkner/brms")
 ```
 
 ### Installing rstanarm
